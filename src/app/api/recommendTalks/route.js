@@ -1,19 +1,26 @@
 // /src/app/api/recommendTalks/route.js
 import { NextResponse } from "next/server";
-import talks from "@/data/talks.json";
 
 export async function POST(req) {
-  const { summary, selectedTags } = await req.json();
+  const { prompt } = await req.json();
 
-  // 🧠 Simple relevance ranking: count tag overlaps
-  const scoredTalks = talks.map((talk) => {
-    const overlap = talk.tags.filter((tag) => selectedTags.includes(tag));
-    return { ...talk, score: overlap.length };
-  });
+  if (!prompt) {
+    return NextResponse.json({ error: "No prompt provided." }, { status: 400 });
+  }
 
-  // 🥇 Sort by score, highest first
-  const sorted = scoredTalks.sort((a, b) => b.score - a.score);
+  try {
+    const response = await fetch("http://localhost:5000/infer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ prompt })
+    });
 
-  // 🎯 Return top 3
-  return NextResponse.json({ recommendations: sorted.slice(0, 3) });
+    const data = await response.json();
+    return NextResponse.json({ result: data.result });
+  } catch (err) {
+    console.error("Error contacting Python server:", err);
+    return NextResponse.json({ error: "AI server error" }, { status: 500 });
+  }
 }

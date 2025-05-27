@@ -43,3 +43,5 @@ API RecommendTalks
 // selectedTags (from the user)
 // Process the recommendation logic
 // Return a list of recommended talks
+
+User prompt in UI → /api/recommendTalks → Python server → model → AI response → back to frontend

@@ -37,6 +37,16 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Python venv and compiled files
+venv/
+ai-server/venv/
+__pycache__/
+*.pyc
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI model files (too large for GitHub)
+ai-server/trained_model/
+ai-server/venv/
