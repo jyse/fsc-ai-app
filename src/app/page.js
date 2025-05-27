@@ -2,10 +2,12 @@
 import { useState } from "react";
 import AIResponse from "./components/AIResponse.js";
 import PDFUploader from "./components/PDFUploader.js";
+import { TALK_TAGS } from "../app/data/tags.js";
 
 export default function Home() {
   const [aiResponse, setAIResponse] = useState();
   const [profileSummary, setProfileSummary] = useState("");
+  const [selectedTags, setSelectedTags] = useState([]);
 
   const handleSubmit = async () => {
     // For now, just log what you'd send to AI:
@@ -13,6 +15,12 @@ export default function Home() {
     // You’ll send summary + selected interests to your fine-tuned model later
 
     setAIResponse("Giving recommendation..!");
+  };
+
+  const toggleTag = (tag) => {
+    setSelectedTags((prev) => {
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag];
+    });
   };
 
   return (
@@ -51,17 +59,20 @@ export default function Home() {
               Select your interests
             </label>
             <div className="flex flex-wrap gap-2">
-              {["AI", "Frontend", "Backend", "DevOps", "Accessibility"].map(
-                (tag) => (
-                  <button
-                    type="button"
-                    key={tag}
-                    className="px-3 py-1 rounded-full border border-gray-300 text-sm text-gray-700 hover:bg-gray-200"
-                  >
-                    {tag}
-                  </button>
-                )
-              )}
+              {TALK_TAGS.map((tag) => (
+                <button
+                  type="button"
+                  key={tag}
+                  onClick={() => toggleTag(tag)}
+                  className={`px-3 py-1 rounded-full border text-sm ${
+                    selectedTags.includes(tag)
+                      ? "bg-blue-500 text-white"
+                      : "border-gray-300 text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
             </div>
           </div>
 

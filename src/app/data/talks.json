@@ -1,0 +1,93 @@
+[
+  {
+    "title": "Teaming Up: Exploring Team Topologies Through Play & Practice",
+    "speaker": "Marck Oeman",
+    "time": "09:00",
+    "track": "Workshop 1",
+    "tags": ["Culture", "Methodology", "Leadership"]
+  },
+  {
+    "title": "Your ESP32 is now mine - hacking and reverse engineering ESP32 firmware",
+    "speaker": "Wilco van Beijnum",
+    "time": "09:00",
+    "track": "Workshop 2",
+    "tags": ["Hardware", "Security"]
+  },
+  {
+    "title": "Integrating AI into your app: the full-stack approach",
+    "speaker": "Jessy The",
+    "time": "13:00",
+    "track": "Keynote",
+    "tags": ["AI", "Architecture", "FullStack"]
+  },
+  {
+    "title": "Reaching Operational Excellence using OpenTelemetry",
+    "speaker": "Alexander Chatzizacharias & Riccardo Lippolis",
+    "time": "13:45",
+    "track": "Keynote",
+    "tags": ["Observability", "DevOps"]
+  },
+  {
+    "title": "Monads explained",
+    "speaker": "Ties van de Ven",
+    "time": "14:30",
+    "track": "Arena 1",
+    "tags": ["Backend"]
+  },
+  {
+    "title": "Running LLMs on Commodity Hardware: Private, Practical, and Powerful",
+    "speaker": "Jeroen Resoort",
+    "time": "15:30",
+    "track": "Arena 1",
+    "tags": ["AI", "Data", "Hardware"]
+  },
+  {
+    "title": "Securing the Death Star: Threat modeling in a galaxy far, far away...",
+    "speaker": "Coen Goedegebure",
+    "time": "16:30",
+    "track": "Arena 1",
+    "tags": ["Security", "Architecture"]
+  },
+  {
+    "title": "A gentle introduction into Property based testing",
+    "speaker": "Bart Wullems",
+    "time": "14:30",
+    "track": "Arena 2",
+    "tags": ["Testing"]
+  },
+  {
+    "title": "Trusting AI to Modernize Software at Scale",
+    "speaker": "Tim te Beek",
+    "time": "15:30",
+    "track": "Arena 2",
+    "tags": ["AI", "Architecture"]
+  },
+  {
+    "title": "Hidden Costs of 'Ready-Made' Platforms",
+    "speaker": "Rasmus Renvall",
+    "time": "16:30",
+    "track": "Arena 2 - Lightning Talks",
+    "tags": ["Architecture"]
+  },
+  {
+    "title": "What is a system anyway? A little play.",
+    "speaker": "Edo Poll",
+    "time": "16:30",
+    "track": "Arena 2 - Lightning Talks",
+    "tags": ["Systems Thinking", "Methodology"]
+  },
+  {
+    "title": "We need you: Accessibility on web",
+    "speaker": "Ramona Domen",
+    "time": "16:30",
+    "track": "Arena 2 - Lightning Talks",
+    "tags": ["Frontend", "Accessibility"]
+  },
+  {
+    "title": "Seven Habits of A Highly Sucessful Team",
+    "speaker": "Sander Hoogendoorn",
+    "time": "17:30",
+    "track": "Keynote",
+    "tags": ["Culture", "Leaderschip"]
+  }
+]
