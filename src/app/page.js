@@ -1,16 +1,17 @@
 "use client";
 import { useState } from "react";
 import AIResponse from "./components/AIResponse.js";
+import PDFUploader from "./components/PDFUploader.js";
 
 export default function Home() {
   const [aiResponse, setAIResponse] = useState();
+  const [profileSummary, setProfileSummary] = useState("");
 
   const handleSubmit = async () => {
-    // handle file + interests ...
+    // For now, just log what you'd send to AI:
+    console.log("Using summary:", profileSummary);
+    // You’ll send summary + selected interests to your fine-tuned model later
 
-    // const response = await fetch('/api/recommend', { ... });
-    // const data = await response.json();
-    // setAIResponse(data.recommendation);
     setAIResponse("Giving recommendation..!");
   };
 
@@ -27,18 +28,24 @@ export default function Home() {
           Conference talk recommendations.
         </p>
 
-        <form className="space-y-4">
-          <div>
-            <label className="block text-sm font-semibold mb-1">
-              Upload LinkedIn PDF
-            </label>
-            <input
-              type="file"
-              accept="application/pdf"
-              className="block w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
-            />
-          </div>
+        <form
+          className="space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }}
+        >
+          {/* ✅ PDF Upload Component */}
+          <PDFUploader onSummaryReady={setProfileSummary} />
 
+          {/* 👀 Show profile summary once parsed */}
+          {profileSummary && (
+            <div className="bg-green-100 text-sm text-gray-800 p-3 rounded-md border border-green-300">
+              <strong>Profile Summary:</strong> {profileSummary}
+            </div>
+          )}
+
+          {/* 🧠 Tag Selector – will be wired up next */}
           <div>
             <label className="block text-sm font-semibold mb-1">
               Select your interests
@@ -59,7 +66,6 @@ export default function Home() {
           </div>
 
           <button
-            onClick={() => handleSubmit()}
             type="submit"
             className="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold py-2 rounded-md hover:opacity-90 transition"
           >
