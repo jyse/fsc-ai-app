@@ -21,7 +21,7 @@ export default function PDFUploader({ onSummaryReady }) {
         method: "POST",
         body: formData
       });
-/Applications/Loom.app/Contents/Resources/app.asar/node_modules/@loomhq-desktop/entrypoint/dist/renderer/assets/img/alerts//lady_with_camera.png
+
       const data = await res.json();
       console.log("🤖 Data is: ", data);
       setLoading(false);
