@@ -45,3 +45,9 @@ API RecommendTalks
 // Return a list of recommended talks
 
 User prompt in UI → /api/recommendTalks → Python server → model → AI response → back to frontend
+
+# Run Virtual environment and Python server
+
+jessythe@jessys-mbp-2 fsc-ai-app % cd ai-server
+jessythe@jessys-mbp-2 ai-server % source venv/bin/activate
+(venv) jessythe@jessys-mbp-2 ai-server % python app.py
