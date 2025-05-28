@@ -1,19 +1,5 @@
 [
   {
-    "title": "Teaming Up: Exploring Team Topologies Through Play & Practice",
-    "speaker": "Marck Oeman",
-    "time": "09:00",
-    "track": "Workshop 1",
-    "tags": ["Culture", "Methodology", "Leadership"]
-  },
-  {
-    "title": "Your ESP32 is now mine - hacking and reverse engineering ESP32 firmware",
-    "speaker": "Wilco van Beijnum",
-    "time": "09:00",
-    "track": "Workshop 2",
-    "tags": ["Hardware", "Security"]
-  },
-  {
     "title": "Integrating AI into your app: the full-stack approach",
     "speaker": "Jessy The",
     "time": "13:00",
