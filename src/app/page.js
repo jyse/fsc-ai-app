@@ -10,17 +10,37 @@ export default function Home() {
   const [selectedTags, setSelectedTags] = useState([]);
 
   const handleSubmit = async () => {
-    // For now, just log what you'd send to AI:
-    console.log("Using summary:", profileSummary);
-    // You’ll send summary + selected interests to your fine-tuned model later
+    if (!profileSummary || selectedTags.length === 0) {
+      alert("Please upload a profile and select at least one interest.");
+      return;
+    }
 
-    setAIResponse("Giving recommendation..!");
+    try {
+      setAIResponse("Generating recommendations...");
+
+      const response = await fetch("/api/recommendTalks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          summary: profileSummary,
+          interests: selectedTags
+        })
+      });
+
+      const data = await response.json();
+      setAIResponse(data.recommendations || "No response from AI.");
+    } catch (error) {
+      console.error("Error getting recommendation:", error);
+      setAIResponse("Error while getting recommendations.");
+    }
   };
 
   const toggleTag = (tag) => {
-    setSelectedTags((prev) => {
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag];
-    });
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
   };
 
   return (

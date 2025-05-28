@@ -2,25 +2,25 @@
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  const { prompt } = await req.json();
-
-  if (!prompt) {
-    return NextResponse.json({ error: "No prompt provided." }, { status: 400 });
-  }
+  const { summary, interests } = await req.json();
+  console.log(summary, "SUMMARY HERE? 🌸");
 
   try {
-    const response = await fetch("http://localhost:5000/infer", {
+    const response = await fetch("http://127.0.0.1:5000/recommend", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify({ summary, interests })
     });
 
     const data = await response.json();
-    return NextResponse.json({ result: data.result });
-  } catch (err) {
-    console.error("Error contacting Python server:", err);
-    return NextResponse.json({ error: "AI server error" }, { status: 500 });
+    console.log(data, " what is data here? 🐼");
+    return NextResponse.json({ recommendations: data.recommendations });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "❌ Failed to get recommendations" },
+      { status: 500 }
+    );
   }
 }

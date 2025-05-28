@@ -2,12 +2,10 @@
 import { useState } from "react";
 
 export default function PDFUploader({ onSummaryReady }) {
-  console.log("🤖 Loading up PDF");
   const [loading, setLoading] = useState(false);
 
   async function handleFileChange(e) {
     const file = e.target.files[0];
-    console.log("🐼🐼🐼🐼🐼🐼 what is", file);
     if (!file) return;
 
     setLoading(true);
@@ -15,7 +13,6 @@ export default function PDFUploader({ onSummaryReady }) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      console.log("❓: what is formData?", formData);
 
       const res = await fetch("/api/summarizeProfile", {
         method: "POST",
@@ -23,7 +20,6 @@ export default function PDFUploader({ onSummaryReady }) {
       });
 
       const data = await res.json();
-      console.log("🤖 Data is: ", data);
       setLoading(false);
       onSummaryReady(data.summary);
     } catch (error) {

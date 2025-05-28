@@ -11,8 +11,6 @@ const openai = new OpenAI({
 
 export async function POST(req) {
   try {
-    console.log("🚀 API route hit!");
-
     if (!process.env.OPENAI_API_KEY) {
       console.log("❌ No API key found");
       return NextResponse.json(
@@ -20,7 +18,7 @@ export async function POST(req) {
         { status: 500 }
       );
     }
-    console.log("👋 Step 1: Getting form data...");
+
     const formData = await req.formData();
     const file = formData.get("file");
     console.log("✅ Received file:", file?.name, file?.size);
@@ -30,18 +28,12 @@ export async function POST(req) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
-    console.log("👋 Step 2: Reading file buffer...");
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    console.log("✅ Buffer created, size:", buffer.length);
 
-    console.log("👋 Step 3: Parsing PDF with pdf-parse...");
     const pdfData = await pdfParse(buffer);
     const pdfText = pdfData.text;
-    console.log("✅ PDF Text extracted, length:", pdfText.length);
-    console.log("✅ First 200 chars:", pdfText.substring(0, 200));
 
-    console.log("👋 Step 4: Calling OpenAI...");
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [

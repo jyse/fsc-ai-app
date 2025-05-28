@@ -51,3 +51,12 @@ User prompt in UI → /api/recommendTalks → Python server → model → AI res
 jessythe@jessys-mbp-2 fsc-ai-app % cd ai-server
 jessythe@jessys-mbp-2 ai-server % source venv/bin/activate
 (venv) jessythe@jessys-mbp-2 ai-server % python app.py
+
+How to install
+How to run the app
+How to train new models (if applicable)
+This repo uses Git LFS. You need to install Git LFS to clone it properly.
+
+Run this before you clone this repo
+git lfs install
+git clone https://github.com/jyse/fsc-ai-app.git
