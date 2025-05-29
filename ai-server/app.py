@@ -28,7 +28,7 @@ def recommend():
         print("✅ Summary: ", summary)
         print("✅ Interests: ", interests)
 
-        prompt = f"{summary.strip()} Tags: {', '.join(interests)}"
+        prompt = f"{summary.strip()}. Tags: {', '.join(interests)}"
         print("📝 Prompt sent to model:", prompt)
         
         # Tokenize input
@@ -38,17 +38,24 @@ def recommend():
         # Generate output
         outputs = model.generate(
             **inputs,
-            max_new_tokens=500,  
-            temperature=0.7,     
-            do_sample=True,
-            num_beams=3,         
+            max_new_tokens=600,
+            max_length=1024,        
+            num_beams=1,
+            do_sample=False,
+            repetition_penalty=1.1,
+            early_stopping=True,
             pad_token_id=tokenizer.pad_token_id,
             eos_token_id=tokenizer.eos_token_id
         )
 
-        generated_tokens = outputs[0][inputs['input_ids'].shape[1]:]
-        result = tokenizer.decode(generated_tokens, skip_special_tokens=True)
+        print("📦 Raw output:", outputs)
+        print("📦 Full decoded string:", tokenizer.decode(outputs[0], skip_special_tokens=True))
 
+        result = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+        print("🧪 Prompt length (tokens):", len(inputs['input_ids'][0]))
+        print("🧪 Output tokens:", outputs[0])
+        print("🧪 Decoded output:", result)
         print("✅ Model result: ", result )
         return jsonify({"recommendations": result})
     

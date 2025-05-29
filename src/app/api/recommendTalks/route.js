@@ -16,7 +16,7 @@ export async function POST(req) {
 
     const data = await response.json();
     console.log(data, " what is data here? 🐼");
-    return NextResponse.json({ recommendations: data.recommendations });
+    return NextResponse.json({ recommendations: data });
   } catch (error) {
     return NextResponse.json(
       { error: "❌ Failed to get recommendations" },
